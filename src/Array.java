@@ -56,6 +56,32 @@ public class Array {
             size++;
         }
 
+        //从数组中删除第一个元素，返回删除的元素
+        public int removeFirst(){
+            return remove(0);
+        }
+
+        //从数组中删除最后一次元素，返回删除的元素
+        public int removeLast(){
+            return remove(size-1);
+        }
+
+        //在第index的位置删除一个元素
+        public int remove(int index){
+            if(data == null){
+                throw new IllegalArgumentException("delete failed, array is empty which nothing can be deleted");
+            }
+            if(index < 0 || index >= size)
+                throw new IllegalArgumentException("Add fail, require index >= 0 and index <= size");
+            int res = data[index];
+            for(int i = index+1; i < size; i++){
+                data[i-1] = data[i];
+            }
+            size--;
+            return res;
+
+        }
+
         //获取index索引位置的元素
         public int get(int index){
             if(index < 0 || index >= size){
@@ -81,6 +107,7 @@ public class Array {
             return false;
         }
 
+        //查找数组中元素e所在的索引，如果不存在元素e，则返回-1
         public int find(int e){
             for(int i = 0; i < size; i++){
                 if(data[i] == e){
